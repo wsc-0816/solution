@@ -4,6 +4,7 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
@@ -11,47 +12,60 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        if l1 is None :
-        	if l2 is None:
-        		return "Nothing needs to add"
-        	else:
-        		return l2
+        if l1 is None or l2 is None:
+            if l2 is None and l1 is None:
+                return "Nothing needs to add"
+            elif l1 is None:
+                return l2
+            else:
+                return l1
         else:
-        	a= ListNode(None)
-        	count = 0
-        	while (l1 is not None and l2 is not None ):
-        		addSum = l1.val + l2.val + count 
-        		print addSum
-        		if addSum >= 10:
-        			 count = 1 
-        			 addSum -= 10
-        		else:
-        			count = 0
-        		for 
-        		a.val = addSum
-        		temp = ListNode(None)
-        		a.next = temp 
-        		l1= l1.next
-        		l2= l2.next
-        	while (l1 is not None):
-        		if (count == 0 ):
-        			a.next = l1
-        		else:
-        			while l1.val is 9:
-	        			a.next.val = 0
-	        			l1 = l1.next
-	        		a.next.val = l1.next.val + 1
-	        		a.next.next = l1.next.next
-	        while (l2 is not None):
-	        	if (count == 0 ):
-        			a.next = l2.next
-        		else:
-        			while l2.next.val is 9:
-	        			a.next.val = 0
-	        			l2 = l2.next
-	        		a.next.val = l2.next.val + 1
-	        		a.next.next = l2.next.next
-	        return a
+            count = 0 
+            lis = []
+            while l1 is not None and l2 is not None:
+                temp = l1.val + l2.val + count 
+                if temp > 9:
+                    count = 1
+                    temp -= 10
+                else:
+                    count = 0
+                lis.append(temp)
+                l1 = l1.next
+                l2 = l2.next
+            while l1 is not None:
+                temp = l1.val + count 
+                if temp > 9:
+                    count = 1
+                    temp -= 10
+                else:
+                    count = 0
+                lis.append(temp)
+                l1 = l1.next
+            while l2 is not None:
+                temp = l2.val + count 
+                if temp > 9:
+                    count = 1
+                    temp -= 10
+                else:
+                    count = 0
+                lis.append(temp)
+                l2 = l2.next
+            lis.reverse()
+            a = None
+            for i in lis:
+                LisTemp = ListNode(i)
+                LisTemp.next = a 
+                a = LisTemp 
+            return a
+
+
+
+
+
+
+
+
+
 
 
 
