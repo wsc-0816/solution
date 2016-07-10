@@ -59,19 +59,24 @@ class Solution(object):
             return a
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Better solution for this problem
+    def addTwo(self,l1,l2):
+        temp = ListNode(0)
+        new_node = temp 
+        sumOf = 0
+        while l1 or l2:
+            sumOf /= 10
+            if l1:
+                sumOf += l1.val
+                l1 = l1.next
+            if l2:
+                sumOf += l2.val
+                l2= l2.next
+            new_node.next =ListNode(sumOf%10)
+            new_node = new_node.next
+        if sumOf /10 == 1:
+            new_node.next = ListNone(1)
+        return temp.next
 
 
 
@@ -79,13 +84,11 @@ class Solution(object):
 
 if __name__ == '__main__':
 	l1 = ListNode(2)
-	l1.next = ListNode(3)
-	l1.next.next = ListNode(4)
 	l2 = ListNode(2)
 	l2.next = ListNode(3)
 	l2.next.next = ListNode(4)
 	s = Solution()
-	c = s.addTwoNumbers(l1,l2)
+	c = s.addTwo(l1,l2)
 	while c is not None:
 		print "The Value is %s" %c.val
 		c= c.next
